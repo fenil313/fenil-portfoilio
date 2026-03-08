@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #080808;
+  --accent: #6366f1;
+}
+
+body {
+  background-color: var(--bg);
+  color: #f0f0f0;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar for the AI Era */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #080808; }
+::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 10px; }
+
+.text-outline {
+  -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+  color: transparent;
+}
+
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+/* Pause on hover to allow reading */
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: rotate 6s linear infinite;
+}
