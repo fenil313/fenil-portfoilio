@@ -251,7 +251,7 @@ const About = () => {
           <section className="reveal-item max-w-2xl">
             <h2 className="text-blue-500 font-mono text-[10px] tracking-[0.4em] uppercase mb-8">// 01_ARCHITECTURE_OVERVIEW</h2>
             <p className="text-3xl font-light leading-tight">
-              I architect <span className="text-blue-400 font-semibold">robust backend systems</span> and build <span className="text-blue-400 font-semibold">performant frontend interfaces</span>.
+              I architect <span className="text-blue-400 font-semibold"> Backend  systems</span> and build <span className="text-blue-400 font-semibold">performant frontend interfaces</span>.
             </p>
           </section>
 
@@ -261,10 +261,10 @@ const About = () => {
             <h2 className="text-blue-500 font-mono text-[10px] tracking-[0.4em] uppercase mb-8">// 02_TECHNICAL_MATRIX</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
-                { icon: <Cpu />, title: "Backend Systems", desc: "Python, FastAPI, Django" },
-                { icon: <Layout />, title: "Frontend Frameworks", desc: "React.js, Tailwind, Vite" },
-                { icon: <Database />, title: "Database Layer", desc: "PostgreSQL, Redis" },
-                { icon: <Terminal />, title: "Systems & Ops", desc: "Docker, Linux, AWS" }
+                { icon: <Cpu />, title: "Backend Systems", desc: "Python, FastAPI" },
+                { icon: <Layout />, title: "Frontend Frameworks", desc: "Bootstrap, React.js, Tailwind" },
+                { icon: <Database />, title: "Database Layer", desc: "MongoDB,Django" },
+                { icon: <Terminal />, title: "Systems & Ops", desc: "Linux, AWS" }
               ].map((tech) => (
                 <div key={tech.title} className="p-8 border border-white/5 bg-white/[0.02] hover:border-blue-500 transition-colors">
                   <div className="text-blue-500 mb-4">{tech.icon}</div>

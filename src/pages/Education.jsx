@@ -304,80 +304,70 @@
 
 // export default Education; 
 
-
 import React, { useState, useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
 const educationData = [
-  { year: "2017-2018", degree: "SSC", school: "Vidhyanagar Secondary School", cgpa: "5.6", desc: "Foundational secondary education focusing on core sciences." },
-  { year: "2019-2020", degree: "HSC", school: "Vidhyanagar High School", cgpa: "5.9", desc: "Advanced studies in Science stream preparing for technical specialization." },
-  { year: "2020-2023", degree: "BCA Degree", school: "Asia Pacific BCA College", cgpa: "6.25", desc: "Software engineering, data structures, and web architecture foundations." }
+  { year: "2018", degree: "Secondary School", school: "Vidhyanagar Secondary School", metric: "5.6 CGPA", desc: "Completed my ssc in Vidhyanagar Secondary School." },
+  { year: "2020", degree: "Higher Secondary", school: "Vidhyanagar High School", metric: "5.9 CGPA", desc: "Completed my ssc in Vidhyanagar Secondary School." },
+  { year: "2023", degree: "BCA Degree", school: "Asia Pacific BCA College", metric: "6.25 CGPA", desc: "Completed my Bacholors in cnputer application in Asia Pacific BCA College" }
 ];
 
 const Education = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const container = useRef();
 
-  // GSAP animation for smooth content transitions
   useGSAP(() => {
     gsap.fromTo(".fade-in", 
-      { opacity: 0, x: 20 }, 
-      { opacity: 1, x: 0, duration: 0.5, stagger: 0.1 }
+      { opacity: 0, y: 10 }, 
+      { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
     );
   }, { dependencies: [activeIndex], scope: container });
 
   return (
-    <main ref={container} className="bg-[#020202] min-h-screen text-white font-mono flex flex-col md:flex-row overflow-hidden">
-      
-      {/* LEFT: DATA_TICKER */}
-      <div className="w-full md:w-1/3 border-r border-white/10 p-12 flex flex-col justify-center bg-[#030303]">
-       <div className="space-y-12">
-          {educationData.map((edu, i) => (
-            <button
-              key={i}
-              onClick={() => setActiveIndex(i)}
-              className={`block text-left transition-all duration-300 ${activeIndex === i ? 'text-white' : 'text-white/10'}`}
-            >
-              <span className="text-[9px] block mb-2 tracking-[0.2em]">// 0{i + 1}</span>
-              <span className="text-3xl font-black">{edu.year}</span>
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* RIGHT: DATA_DETAIL_PANE */}
-      <div className="w-full md:w-2/3 p-12 md:p-24 flex flex-col justify-center">
-        <div className="max-w-xl fade-in">
-          <h1 className="text-blue-500 text-[10px] tracking-[0.6em] uppercase mb-6">// {educationData[activeIndex].degree}</h1>
-          <h2 className="text-6xl font-black mb-6 leading-tight">{educationData[activeIndex].degree}</h2>
-          <p className="text-white/50 text-xl mb-16 border-l-2 border-blue-500 pl-6">{educationData[activeIndex].school}</p>
-
-          <div className="grid grid-cols-2 gap-12 border-t border-white/5 pt-12">
-            <div>
-              <p className="text-[9px] uppercase tracking-widest text-white/30 mb-2">Cumulative Metric</p>
-              <p className="text-4xl font-bold">{educationData[activeIndex].cgpa}</p>
-            </div>
-            <div>
-              <p className="text-[9px] uppercase tracking-widest text-white/30 mb-2">Academic Scope</p>
-              <p className="text-sm font-light text-white/70 leading-relaxed">{educationData[activeIndex].desc}</p>
-            </div>
-          </div>
-        </div>
+    <main ref={container} className="bg-black min-h-screen text-white p-6 md:p-12 lg:p-20 font-sans">
+      <div className="max-w-6xl mx-auto">
         
-        {/* Visual representation of academic progression */}
-        <div className="mt-20">
-          <p className="text-[9px] text-white/20 uppercase tracking-widest mb-4">// PROGRESSION_STATUS</p>
-          <div className="w-full h-1 bg-white/5 relative">
-            <div 
-              className="h-full bg-blue-500 transition-all duration-500" 
-              style={{ width: `${((activeIndex + 1) / educationData.length) * 100}%` }}
-            ></div>
-          </div>
+        {/* Header - Optimized for wrapping without cutoff */}
+        <header className="mb-12">
+        
+        </header>
+
+        <div className="grid lg:grid-cols-12 gap-8">
+          
+          {/* Navigation - Sidebar for desktop, row for mobile */}
+          <nav className="lg:col-span-4 flex flex-row lg:flex-col gap-3 overflow-x-auto pb-4 lg:pb-0 scrollbar-hide">
+            {educationData.map((edu, i) => (
+              <button 
+                key={i}
+                onClick={() => setActiveIndex(i)}
+                className={`p-5 border rounded-lg transition-all duration-300 w-full lg:w-auto text-left shrink-0 ${
+                  activeIndex === i ? 'bg-cyan-500/10 border-cyan-500' : 'bg-white/5 border-transparent hover:bg-white/10'
+                }`}
+              >
+                <span className="text-[10px] font-mono opacity-60 block mb-1">{edu.year}</span>
+                <span className="text-sm md:text-base font-bold">{edu.degree}</span>
+              </button>
+            ))}
+          </nav>
+
+          {/* Details Pane - Content scales naturally */}
+          <section className="lg:col-span-8 bg-[#0a0a0a] border border-white/5 rounded-xl p-8 md:p-10 fade-in">
+            <h3 className="text-xl md:text-3xl font-bold mb-3">{educationData[activeIndex].school}</h3>
+            <p className="text-cyan-400 font-mono text-xs md:text-sm mb-6 uppercase tracking-widest">{educationData[activeIndex].degree}</p>
+            
+            <p className="text-white/70 text-sm md:text-lg leading-relaxed mb-10 max-w-2xl">
+              {educationData[activeIndex].desc}
+            </p>
+
+            <div className="border-t border-white/10 pt-6">
+              <span className="text-[10px] uppercase tracking-widest text-white/40 block mb-1">Performance Metric</span>
+              <span className="text-3xl md:text-4xl font-black text-cyan-300">{educationData[activeIndex].metric}</span>
+            </div>
+          </section>
         </div>
       </div>
-      
-      
     </main>
   );
 };
